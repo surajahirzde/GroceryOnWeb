@@ -73,8 +73,7 @@ const Hero = () => {
           {/* Discount Badge */}
           <div className="hero-discount-badge">
             <div className="discount-badge-content">
-              <span className="discount-percent">20% OFF</span>
-              <span className="discount-label">On First Order</span>
+         
               <div className="discount-pulse"></div>
             </div>
             <div className="discount-ribbon"></div>
@@ -94,27 +93,7 @@ const Hero = () => {
             our 100% freshness promise!
           </p>
 
-          {/* CTA Buttons */}
-          <div className="hero-cta-buttons">
-            <button 
-              className="cta-btn primary-btn"
-              onClick={handleShopNow}
-            >
-              <span className="btn-icon">🛒</span>
-              <span className="btn-text">Shop Now</span>
-              <span className="btn-arrow">→</span>
-            </button>
-            
-            <button 
-              className="cta-btn secondary-btn"
-              onClick={handleDownloadApp}
-            >
-              <span className="btn-icon">📱</span>
-              <span className="btn-text">Download App</span>
-              <span className="btn-badge">New</span>
-            </button>
-          </div>
-
+     
           {/* Trust Badges */}
           <div className="trust-badges">
             <div className="trust-item">

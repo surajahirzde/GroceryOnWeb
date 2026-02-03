@@ -19,7 +19,7 @@ const Navbar = ({ cartCount }) => {
         {/* Logo */}
         <div className="logo">
           <Link to="/" onClick={closeMenu}>
-            <h1> GroceryStore</h1>
+            <h1> GroceryOnWeb</h1>
           </Link>
         </div>
 
