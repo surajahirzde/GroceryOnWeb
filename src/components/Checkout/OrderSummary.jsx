@@ -223,7 +223,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
 
       {/* Place Order Button */}
       <button 
-        onClick={onPlaceOrder && setPayment(true)} 
+        onClick={() => isOrderReady && setPayment(true)} 
         className={`place-order-btn ${!isOrderReady ? 'disabled' : ''}`}
         disabled={!isOrderReady}
       >
@@ -241,8 +241,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
         )}
       </button>
 
-      
-      {payment && <Payment />}
+      {payment && <Payment amount={finalTotal} onClose={() => setPayment(false)} />}
 
       {/* Order Guarantees */}
       <div className="order-guarantees">
