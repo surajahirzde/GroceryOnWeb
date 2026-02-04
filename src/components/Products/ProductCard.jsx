@@ -28,22 +28,22 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   // Real product images from Unsplash
   const realProductImages = {
-    1: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&auto=format&fit=crop&q=80', // Apples
-    2: 'https://images.unsplash.com/photo-1598170845058-78131a90f4bf?w=400&auto=format&fit=crop&q=80', // Carrots
-    3: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af?w=400&auto=format&fit=crop&q=80', // Milk
-    4: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format&fit=crop&q=80', // Bread
-    5: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&auto=format&fit=crop&q=80', // Eggs
-    6: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&auto=format&fit=crop&q=80', // Potatoes
-    7: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&auto=format&fit=crop&q=80', // Bananas
-    8: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&auto=format&fit=crop&q=80', // Rice
-    9: 'https://images.unsplash.com/photo-1559598467-f8b76c8155d0?w=400&auto=format&fit=crop&q=80', // Yogurt
-    10: 'https://images.unsplash.com/photo-1533050487297-09b450131914?w=400&auto=format&fit=crop&q=80', // Olive Oil
-    11: 'https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=400&auto=format&fit=crop&q=80', // Honey
+    1: 'https://images.pexels.com/photos/209339/pexels-photo-209339.jpeg', // Apples
+    2: 'https://images.pexels.com/photos/5792530/pexels-photo-5792530.jpeg', // Carrots
+    3: 'https://images.pexels.com/photos/8712908/pexels-photo-8712908.jpeg', // Milk
+    4: 'https://images.pexels.com/photos/1756061/pexels-photo-1756061.jpeg', // Bread
+    5: 'https://images.pexels.com/photos/7262896/pexels-photo-7262896.jpeg', // Eggs
+    6: 'https://images.pexels.com/photos/7890034/pexels-photo-7890034.jpeg', // Potatoes
+    7: 'https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg', // Bananas
+    8: 'https://images.pexels.com/photos/8994586/pexels-photo-8994586.jpeg', // Rice
+    9: 'https://images.pexels.com/photos/4006347/pexels-photo-4006347.jpeg', // Yogurt
+    10: 'https://images.pexels.com/photos/10048321/pexels-photo-10048321.jpeg', // Olive Oil
+    11: 'https://images.pexels.com/photos/714522/pexels-photo-714522.jpeg', // Honey
     12: 'https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?w=400&auto=format&fit=crop&q=80', // Broccoli
-    13: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&auto=format&fit=crop&q=80', // Almonds
-    14: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&auto=format&fit=crop&q=80', // Orange Juice
-    15: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&auto=format&fit=crop&q=80', // Paneer
-    16: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&auto=format&fit=crop&q=80', // Tomatoes
+    13: 'https://images.pexels.com/photos/11091977/pexels-photo-11091977.jpeg', // Almonds
+    14: 'https://images.pexels.com/photos/4115178/pexels-photo-4115178.jpeg', // Orange Juice
+    15: 'https://images.pexels.com/photos/5953663/pexels-photo-5953663.jpeg', // Paneer
+    16: 'https://images.pexels.com/photos/162830/tomatoes-tomato-harvest-healthy-food-162830.jpeg', // Tomatoes
     17: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&auto=format&fit=crop&q=80', // Mangoes
     18: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&auto=format&fit=crop&q=80', // Butter
     19: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&auto=format&fit=crop&q=80', // Coffee

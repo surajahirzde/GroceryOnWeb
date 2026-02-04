@@ -43,7 +43,7 @@ const Product = () => {
     {
       id: 1, name: 'Organic Apples - Shimla', category: 'fruits', brand: 'Fresh Farms', 
       price: 299, originalPrice: 349, discount: 15, rating: 4.5, reviews: 128,
-      image: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&fit=crop',
+      image: 'https://images.pexels.com/photos/209339/pexels-photo-209339.jpeg',
       unit: 'kg', stock: 50, delivery: 'Today', tags: ['organic', 'best seller'],
       description: 'Fresh organic Shimla apples, rich in fiber and vitamins.'
     },
@@ -57,35 +57,35 @@ const Product = () => {
     {
       id: 3, name: 'Almonds - California', category: 'dry-fruits', brand: 'Nutty World', 
       price: 899, originalPrice: 1099, discount: 18, rating: 4.7, reviews: 256,
-      image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500&fit=crop',
+      image: 'https://images.pexels.com/photos/11091977/pexels-photo-11091977.jpeg',
       unit: '500g', stock: 30, delivery: 'Tomorrow', tags: ['premium'],
       description: 'Premium California almonds, rich in protein.'
     },
     {
       id: 4, name: 'Basmati Rice - Premium', category: 'staples', brand: 'India Gate', 
       price: 1299, originalPrice: 1499, discount: 13, rating: 4.6, reviews: 345,
-      image: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=500&fit=crop',
+      image: 'https://images.pexels.com/photos/8108170/pexels-photo-8108170.jpeg',
       unit: '5kg', stock: 25, delivery: 'Today', tags: ['basmati'],
       description: 'Premium basmati rice with aromatic fragrance.'
     },
     {
       id: 5, name: 'Greek Yogurt', category: 'dairy', brand: 'Amul', 
       price: 199, originalPrice: 249, discount: 20, rating: 4.4, reviews: 167,
-      image: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af?w=500&fit=crop',
+      image: 'https://images.pexels.com/photos/4006347/pexels-photo-4006347.jpeg',
       unit: '500g', stock: 45, delivery: 'Today', tags: ['protein'],
       description: 'Creamy Greek yogurt high in protein.'
     },
     {
       id: 6, name: 'Chicken Breast - Boneless', category: 'meat', brand: 'Fresh Chicken', 
       price: 499, originalPrice: 599, discount: 17, rating: 4.5, reviews: 189,
-      image: 'https://images.unsplash.com/photo-1604503468505-3c319ca4f5c6?w=500&fit=crop',
+      image: 'https://images.pexels.com/photos/5769373/pexels-photo-5769373.jpeg',
       unit: 'kg', stock: 20, delivery: 'Tomorrow', tags: ['fresh'],
       description: 'Fresh boneless chicken breast.'
     },
     {
       id: 7, name: 'Olive Oil - Extra Virgin', category: 'oils', brand: 'Borges', 
       price: 799, originalPrice: 999, discount: 20, rating: 4.8, reviews: 421,
-      image: 'https://images.unsplash.com/photo-1533050487297-09b450131914?w=500&fit=crop',
+      image: 'https://images.pexels.com/photos/10048321/pexels-photo-10048321.jpeg',
       unit: '1L', stock: 35, delivery: 'Today', tags: ['healthy'],
       description: 'Premium extra virgin olive oil.'
     },

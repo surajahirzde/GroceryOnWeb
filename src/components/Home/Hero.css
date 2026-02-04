@@ -323,17 +323,7 @@
   animation: hero-wiggle 1s ease-in-out infinite;
 }
 
-@keyframes hero-wiggle {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-3deg);
-  }
-  75% {
-    transform: rotate(3deg);
-  }
-}
+
 
 @keyframes hero-fade-in {
   to {
@@ -517,14 +507,6 @@
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
 }
 
-@keyframes hero-float-slow {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
 
 /* Floating Product Cards */
 .hero-floating-card {
@@ -623,14 +605,7 @@
   animation: hero-pulse-delivery 2s infinite;
 }
 
-@keyframes hero-pulse-delivery {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.05);
-  }
-}
+
 
 .hero-delivery-icon-wrapper {
   position: relative;
