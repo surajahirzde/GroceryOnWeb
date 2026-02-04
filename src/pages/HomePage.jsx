@@ -3,6 +3,7 @@ import Hero from '../components/Home/Hero';
 import CategorySection from '../components/Home/CategorySection';
 import ProductGrid from '../components/Home/ProductGrid';
 import './HomePage.css';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [cartCount, setCartCount] = useState(() => {
