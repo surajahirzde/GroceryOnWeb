@@ -27,14 +27,15 @@ const HomePage = () => {
       <ProductGrid/>
       
       {cartCount > 0 && (
-        <div className="home-floating-cart">
-          <a href="/cart" className="home-floating-cart-btn">
-            <span className="cart-icon">🛒</span>
-            <span className="cart-count">{cartCount} items</span>
-            <span className="cart-text">View Cart</span>
-            <span className="cart-arrow">→</span>
-          </a>
-        </div>
+     <div className="home-floating-cart">
+  <Link to="/cart" className="home-floating-cart-btn">
+    <span className="cart-icon">🛒</span>
+    <span className="cart-count">{cartCount} items</span>
+    <span className="cart-text">View Cart</span>
+    <span className="cart-arrow">→</span>
+  </Link>
+</div>
+
       )}
     </div>
   );

@@ -67,6 +67,9 @@ function App() {
                 <Route path="/products" element={<Product />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/order-success/:orderId" element={<OrderSuccessPage />} />
+            
+
+
             </Routes>
           </Suspense>
         </main>
