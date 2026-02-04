@@ -1,13 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './OrderSummary.css';
+import { useState } from 'react';
+
+import Payment from '../Checkout/Payment.jsx';
+
+
 
 const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep = 3 }) => {
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const deliveryFee = subtotal > 499 ? 0 : 40;
-  const tax = subtotal * 0.05;
+  const tax = subtotal * 0.18;
   const total = subtotal + deliveryFee + tax;
-  
+
+  const [ payment , setPayment ] = useState(false);
+
+
+
   // Add COD charge if selected
   const finalTotal = paymentMethod === 'cod' ? total + 10 : total;
   const itemCount = items.reduce((count, item) => count + item.quantity, 0);
@@ -214,7 +223,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
 
       {/* Place Order Button */}
       <button 
-        onClick={onPlaceOrder}
+        onClick={onPlaceOrder && setPayment(true)} 
         className={`place-order-btn ${!isOrderReady ? 'disabled' : ''}`}
         disabled={!isOrderReady}
       >
@@ -231,6 +240,9 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
           </>
         )}
       </button>
+
+      
+      {payment && <Payment />}
 
       {/* Order Guarantees */}
       <div className="order-guarantees">
