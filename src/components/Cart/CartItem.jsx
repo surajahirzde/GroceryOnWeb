@@ -1,4 +1,5 @@
 import React from 'react';
+import { Minus, Plus, Trash2, Heart, Package } from 'lucide-react';
 import './CartItem.css';
 
 const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
@@ -24,100 +25,98 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
 
   return (
     <div className="cart-item-card">
-      {/* Item Image */}
+      {/* Product Image */}
       <div className="cart-item-image">
-        <div className="cart-image-container">
-          <span className="cart-item-emoji">{item.image || '🛒'}</span>
+        <div className="image-wrapper">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="product-image"
+            onError={(e) => {
+              e.target.src = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&fit=crop";
+            }}
+          />
+          {item.category && (
+            <span className="category-badge">{item.category}</span>
+          )}
         </div>
       </div>
 
-      {/* Item Details */}
-      <div className="cart-item-details">
-        <div className="cart-item-header">
-          <h3 className="cart-item-name">{item.name}</h3>
-          {item.category && (
-            <span className="cart-item-category">{item.category}</span>
-          )}
-        </div>
-        
-        {item.description && (
-          <p className="cart-item-description">{item.description}</p>
-        )}
-        
-        <div className="cart-item-meta">
-          <div className="cart-item-price">
-            <span className="price-label">Price:</span>
-            <span className="price-value">₹{item.price.toFixed(2)}</span>
-          </div>
+      {/* Product Info */}
+      <div className="cart-item-info">
+        <div className="product-details">
+          <h3 className="product-name">{item.name}</h3>
           
-          {item.weight && (
-            <div className="cart-item-weight">
-              <span className="weight-icon">⚖️</span>
-              <span className="weight-value">{item.weight}</span>
-            </div>
+          {item.description && (
+            <p className="product-description">{item.description}</p>
           )}
+
+          <div className="product-meta">
+            <span className="price-per-unit">
+              ₹{item.price.toFixed(2)}
+              {item.unit && <span className="unit">/{item.unit}</span>}
+            </span>
+            
+            {item.weight && (
+              <span className="product-weight">
+                <Package size={14} />
+                {item.weight}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Quantity Controls */}
       <div className="cart-item-quantity">
+        <label className="quantity-label">Quantity</label>
         <div className="quantity-controls">
-          <button 
+          <button
             onClick={handleDecrease}
             className="qty-btn qty-decrease"
             aria-label="Decrease quantity"
+            disabled={item.quantity === 1}
           >
-            <span className="qty-icon">−</span>
+            <Minus size={16} />
           </button>
-          
+
           <div className="qty-display">
             <span className="qty-value">{item.quantity}</span>
-            <span className="qty-label">items</span>
           </div>
-          
-          <button 
+
+          <button
             onClick={handleIncrease}
             className="qty-btn qty-increase"
             aria-label="Increase quantity"
           >
-            <span className="qty-icon">+</span>
+            <Plus size={16} />
           </button>
-        </div>
-        
-        <div className="qty-stats">
-          <span className="qty-total">
-            ₹{(item.price * item.quantity).toFixed(2)}
-          </span>
         </div>
       </div>
 
-      {/* Total Price */}
-      <div className="cart-item-total">
-        <div className="total-section">
-          <span className="total-label">Total:</span>
-          <span className="total-amount">₹{totalPrice.toFixed(2)}</span>
-        </div>
+      {/* Subtotal */}
+      <div className="cart-item-price">
+        <label className="price-label">Subtotal</label>
+        <div className="price-value">₹{totalPrice.toFixed(2)}</div>
       </div>
 
       {/* Actions */}
       <div className="cart-item-actions">
-        <button 
+        <button
           onClick={handleRemove}
-          className="cart-remove-btn"
+          className="action-btn remove-btn"
           aria-label="Remove item from cart"
-          title="Remove item"
+          title="Remove from cart"
         >
-          <span className="remove-icon">🗑️</span>
-          <span className="remove-text">Remove</span>
+          <Trash2 size={18} />
         </button>
-        
-        <button 
-          className="cart-save-btn"
+
+        <button
+          className="action-btn save-btn"
           aria-label="Save for later"
           title="Save for later"
         >
-          <span className="save-icon">💾</span>
-          <span className="save-text">Save</span>
+          <Heart size={18} />
         </button>
       </div>
     </div>

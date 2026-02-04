@@ -73,16 +73,31 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
         
         <div className="items-list">
           {items.slice(0, 3).map(item => (
-            <div key={item.id} className="order-item">
-              <div className="item-icon">{item.image || '🛒'}</div>
-              <div className="item-details">
-                <span className="item-name">{item.name}</span>
-                <span className="item-meta">
-                  {item.quantity} × ₹{item.price.toFixed(2)}
-                </span>
-              </div>
-              <div className="item-total">₹{(item.price * item.quantity).toFixed(2)}</div>
-            </div>
+        <div key={item.id} className="order-item">
+  <div className="item-icon">
+    {item.image ? (
+      <img 
+        src={item.image}
+        alt={item.name}
+        className="item-image"
+      />
+    ) : (
+      <span className="item-fallback-icon">🛒</span>
+    )}
+  </div>
+
+  <div className="item-details">
+    <span className="item-name">{item.name}</span>
+    <span className="item-meta">
+      {item.quantity} × ₹{item.price.toFixed(2)}
+    </span>
+  </div>
+
+  <div className="item-total">
+    ₹{(item.price * item.quantity).toFixed(2)}
+  </div>
+</div>
+
           ))}
           
           {items.length > 3 && (
@@ -178,7 +193,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
           </div>
           
           <div className="price-row">
-            <span className="price-label">Tax (5%)</span>
+            <span className="price-label">GST (18%)</span>
             <span className="price-value">₹{tax.toFixed(2)}</span>
           </div>
           
