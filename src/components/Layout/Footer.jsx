@@ -8,11 +8,11 @@ const Footer = () => {
   const quickLinks = [
     { to: "/", label: "Home", icon: "🏠" },
     { to: "/products", label: "Products", icon: "🛒" },
-    { to: "/categories", label: "Categories", icon: "📂" },
-    { to: "/offers", label: "Offers", icon: "🎁" },
+
+
     { to: "/about", label: "About Us", icon: "📖" },
     { to: "/contact", label: "Contact", icon: "📞" },
-    { to: "/login", label: "My Account", icon: "👤" },
+
     { to: "/cart", label: "My Cart", icon: "🛍️" }
   ];
 
@@ -32,7 +32,7 @@ const Footer = () => {
   return (
     <footer className="footer-section">
       {/* Top Footer */}
-     
+
 
       {/* Main Footer */}
       <div className="footer-main">
@@ -91,7 +91,12 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-              
+
+
+            </div>
+
+            {/* Download App */}
+            <div className="footer-column">
               <h4 className="footer-column-title mt-30">
                 <span className="title-icon">⏰</span>
                 Delivery Hours
@@ -105,44 +110,6 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-
-            {/* Download App */}
-            <div className="footer-column">
-              <h4 className="footer-column-title">
-                <span className="title-icon">📱</span>
-                Download Our App
-              </h4>
-              <div className="app-download">
-                <p className="app-description">
-                  Get exclusive app-only deals and faster checkout
-                </p>
-                <div className="app-buttons">
-                  <a href="#" className="app-btn play-store">
-                    <span className="app-icon">▶️</span>
-                    <div className="app-text">
-                      <span className="app-label">GET IT ON</span>
-                      <span className="app-name">Google Play</span>
-                    </div>
-                  </a>
-                  <a href="#" className="app-btn app-store">
-                    <span className="app-icon">🍎</span>
-                    <div className="app-text">
-                      <span className="app-label">Download on the</span>
-                      <span className="app-name">App Store</span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              
-              <div className="payment-methods">
-                <h4 className="payment-title">We Accept</h4>
-                <div className="payment-icons">
-                  {paymentMethods.map((method, index) => (
-                    <span key={index} className="payment-icon">{method}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -154,7 +121,7 @@ const Footer = () => {
             <p className="copyright">
               &copy; {currentYear} <span className="copyright-name">FreshCart</span>. All rights reserved.
             </p>
-            
+
             <div className="footer-bottom-links">
               <a href="#" className="bottom-link">Privacy Policy</a>
               <span className="link-divider">•</span>
@@ -164,7 +131,7 @@ const Footer = () => {
               <span className="link-divider">•</span>
               <a href="#" className="bottom-link">FAQ</a>
             </div>
-            
+
             <div className="made-with">
               <span className="heart-icon">❤️</span>
               Made with love for fresh groceries

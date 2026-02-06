@@ -256,7 +256,12 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
         )}
       </button>
 
-      {payment && <Payment amount={finalTotal} onClose={() => setPayment(false)} />}
+
+
+     {payment && <Payment amount={finalTotal} onClose={() => setPayment(false)} />}
+
+
+  
 
       {/* Order Guarantees */}
       <div className="order-guarantees">
