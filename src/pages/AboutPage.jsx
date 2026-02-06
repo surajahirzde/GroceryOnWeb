@@ -1,61 +1,105 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Truck, 
-  Shield, 
-  Leaf, 
-  Users, 
-  Package,
-  Clock,
-  Award,
-  Star,
-  Heart,
-  Target,
-  CheckCircle,
-  MapPin,
-  Phone,
-  Mail,
-  ChevronRight,
-  Sparkles,
-  Gem,
-  ThumbsUp,
-  Truck as DeliveryTruck
+  Truck, Shield, Leaf, Users, Package, Clock, Award, Star,
+  Heart, Target, CheckCircle, MapPin, Phone, Mail, ChevronRight,
+  Sparkles, Gem, ThumbsUp, Zap, TrendingUp
 } from 'lucide-react';
 import './AboutPage.css';
+
+// Memoized components for better performance
+const StatCard = memo(({ icon, value, label }) => (
+  <div className="stat-card">
+    <div className="stat-icon-wrapper">{icon}</div>
+    <div className="stat-content">
+      <div className="stat-value">{value}</div>
+      <div className="stat-label">{label}</div>
+    </div>
+  </div>
+));
+
+const FeatureCard = memo(({ icon, title, description, color }) => (
+  <div className="feature-card" style={{ '--card-color': color }}>
+    <div className="feature-icon-wrapper">{icon}</div>
+    <div className="feature-content">
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
+    <div className="feature-badge">
+      <CheckCircle size={20} />
+    </div>
+  </div>
+));
+
+const ValueCard = memo(({ icon, title, description, index }) => (
+  <div className="value-card">
+    <div className="value-icon">{icon}</div>
+    <div className="value-content">
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
+    <div className="value-number">0{index + 1}</div>
+  </div>
+));
+
+const TeamCard = memo(({ member }) => (
+  <div className="team-card">
+    <div className="team-image-wrapper">
+      <img 
+        src={member.image} 
+        alt={member.name} 
+        className="team-image"
+        loading="lazy"
+      />
+      <div className="experience-badge">
+        <ThumbsUp size={16} />
+        <span>{member.experience}</span>
+      </div>
+    </div>
+    <div className="team-info">
+      <h3>{member.name}</h3>
+      <p className="team-role">{member.role}</p>
+      <div className="team-contact">
+        <Mail size={16} />
+        <span>{member.name.split(' ')[0].toLowerCase()}@freshcart.com</span>
+      </div>
+    </div>
+  </div>
+));
 
 const AboutPage = () => {
   const navigate = useNavigate();
 
   const stats = [
-    { icon: <Truck />, value: '50K+', label: 'Orders Delivered', suffix: '' },
-    { icon: <Users />, value: '25K+', label: 'Happy Families', suffix: '' },
-    { icon: <Clock />, value: '98.7%', label: 'On-Time Delivery', suffix: '' },
-    { icon: <Leaf />, value: '100%', label: 'Fresh Guarantee', suffix: '' }
+    { icon: <Truck />, value: '50K+', label: 'Orders Delivered' },
+    { icon: <Users />, value: '25K+', label: 'Happy Families' },
+    { icon: <Clock />, value: '98.7%', label: 'On-Time Delivery' },
+    { icon: <Leaf />, value: '100%', label: 'Fresh Guarantee' }
   ];
 
   const features = [
     {
       icon: <Shield />,
       title: 'Quality Assured',
-      description: 'Every product undergoes rigorous 3-step quality checks',
+      description: 'Every product undergoes rigorous 3-step quality checks before reaching you',
       color: '#10b981'
     },
     {
       icon: <Package />,
       title: 'Smart Packaging',
-      description: 'Temperature-controlled delivery system for optimal freshness',
+      description: 'Temperature-controlled delivery system maintains optimal freshness',
       color: '#3b82f6'
     },
     {
       icon: <Star />,
       title: 'Premium Selection',
-      description: 'Curated from certified farms and trusted suppliers',
+      description: 'Curated from certified farms and trusted suppliers nationwide',
       color: '#f59e0b'
     },
     {
       icon: <Heart />,
       title: 'Customer First',
-      description: '24/7 support with instant resolution guarantee',
+      description: '24/7 dedicated support with instant resolution guarantee',
       color: '#ef4444'
     }
   ];
@@ -64,17 +108,17 @@ const AboutPage = () => {
     {
       icon: <Sparkles />,
       title: 'Freshness First',
-      description: 'We deliver farm-fresh produce within hours of harvest with our direct-from-farm network.'
+      description: 'We deliver farm-fresh produce within hours of harvest with our direct-from-farm network ensuring maximum nutritional value.'
     },
     {
       icon: <Gem />,
       title: 'Trust & Transparency',
-      description: 'Complete visibility from farm to your doorstep with real-time tracking.'
+      description: 'Complete visibility from farm to your doorstep with real-time tracking and full traceability of every product.'
     },
     {
-      icon: <Target />,
+      icon: <Zap />,
       title: 'Sustainable Choices',
-      description: 'Eco-friendly packaging and support for local farming communities.'
+      description: 'Eco-friendly packaging and active support for local farming communities, reducing our carbon footprint daily.'
     }
   ];
 
@@ -94,37 +138,29 @@ const AboutPage = () => {
     {
       name: 'Anjali Mehta',
       role: 'Customer Experience Head',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
+      image: 'https://images.pexels.com/photos/4065181/pexels-photo-4065181.jpeg',
       experience: '6+ Years'
     }
   ];
 
   const milestones = [
-    { year: '2020', event: 'Founded in Delhi with 3 employees' },
-    { year: '2021', event: 'Expanded to Mumbai & Bangalore' },
-    { year: '2022', event: 'Mobile App Launch & 50K+ Users' },
-    { year: '2023', event: '15 Cities & International Suppliers' },
-    { year: '2024', event: 'Award Winning Service & Innovation' }
+    { year: '2020', event: 'Founded in Delhi with a vision to revolutionize grocery shopping' },
+    { year: '2021', event: 'Expanded operations to Mumbai & Bangalore with 10,000+ customers' },
+    { year: '2022', event: 'Launched mobile app and crossed 50,000 active users milestone' },
+    { year: '2023', event: 'Presence in 15 major cities with international supplier partnerships' },
+    { year: '2024', event: 'Recognized with multiple awards for service excellence and innovation' }
   ];
 
   const certifications = [
-    { name: 'ISO 9001:2015', description: 'Quality Management' },
-    { name: 'FSSAI Certified', description: 'Food Safety Standards' },
+    { name: 'ISO 9001:2015', description: 'Quality Management System' },
+    { name: 'FSSAI Certified', description: 'Food Safety & Standards' },
     { name: 'Green Certified', description: 'Sustainable Operations' }
   ];
 
-  const handleShopNow = () => {
-    navigate('/products');
-  };
-
-  const handleContact = () => {
-    navigate('/contact');
-  };
-
   return (
     <div className="about-page">
-      {/* Hero Banner */}
-      <section className="hero-banner">
+      {/* Hero Section */}
+      <section className="hero-section">
         <div className="container">
           <div className="hero-content">
             <div className="hero-badge">
@@ -145,34 +181,28 @@ const AboutPage = () => {
             <div className="hero-actions">
               <button 
                 className="btn btn-primary" 
-                onClick={handleShopNow}
+                onClick={() => navigate('/products')}
               >
                 Start Shopping
                 <ChevronRight size={20} />
               </button>
               <button 
                 className="btn btn-secondary"
-                onClick={handleContact}
+                onClick={() => navigate('/contact')}
               >
                 Contact Us
               </button>
             </div>
           </div>
-          
-          <div className="hero-stats">
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="stats-section">
+        <div className="container">
+          <div className="stats-grid">
             {stats.map((stat, index) => (
-              <div key={index} className="stat-card">
-                <div className="stat-icon-wrapper">
-                  {stat.icon}
-                </div>
-                <div className="stat-content">
-                  <div className="stat-value">
-                    {stat.value}
-                    <span className="stat-suffix">{stat.suffix}</span>
-                  </div>
-                  <div className="stat-label">{stat.label}</div>
-                </div>
-              </div>
+              <StatCard key={index} {...stat} />
             ))}
           </div>
         </div>
@@ -181,10 +211,10 @@ const AboutPage = () => {
       {/* Mission Section */}
       <section className="mission-section">
         <div className="container">
-          <div className="section-header center">
+          <div className="section-header">
             <h2 className="section-title">Our Mission & Vision</h2>
             <p className="section-subtitle">
-              Redefining grocery shopping through innovation and care
+              Redefining grocery shopping through innovation, quality, and care
             </p>
           </div>
           
@@ -197,39 +227,41 @@ const AboutPage = () => {
               <p>
                 To make premium quality groceries accessible to every household 
                 while supporting sustainable farming and reducing food waste 
-                through smart technology.
+                through smart technology and efficient logistics.
               </p>
             </div>
             
-            <div className="mission-card vision">
+            <div className="mission-card mission-card-vision">
               <div className="mission-icon">
-                <Sparkles />
+                <TrendingUp />
               </div>
               <h3>Our Vision</h3>
               <p>
                 To become India's most trusted grocery partner, recognized for 
                 exceptional quality, innovative delivery solutions, and positive 
-                community impact.
+                impact on communities and the environment.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Story Timeline */}
+      {/* Journey Timeline */}
       <section className="timeline-section">
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">Our Journey</h2>
             <p className="section-subtitle">
-              From humble beginnings to serving thousands of families
+              From humble beginnings to serving thousands of families across India
             </p>
           </div>
           
           <div className="timeline">
             {milestones.map((item, index) => (
               <div key={index} className="timeline-item">
-                <div className="timeline-marker"></div>
+                <div className="timeline-marker">
+                  <div className="timeline-dot"></div>
+                </div>
                 <div className="timeline-content">
                   <div className="timeline-year">{item.year}</div>
                   <div className="timeline-event">{item.event}</div>
@@ -240,10 +272,10 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Core Values */}
       <section className="values-section">
         <div className="container">
-          <div className="section-header center">
+          <div className="section-header">
             <h2 className="section-title">Our Core Values</h2>
             <p className="section-subtitle">
               The principles that guide every decision we make
@@ -252,22 +284,13 @@ const AboutPage = () => {
           
           <div className="values-grid">
             {values.map((value, index) => (
-              <div key={index} className="value-card">
-                <div className="value-icon">
-                  {value.icon}
-                </div>
-                <div className="value-content">
-                  <h3>{value.title}</h3>
-                  <p>{value.description}</p>
-                </div>
-                <div className="value-number">0{index + 1}</div>
-              </div>
+              <ValueCard key={index} {...value} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Why Choose Us */}
       <section className="features-section">
         <div className="container">
           <div className="section-header">
@@ -279,139 +302,47 @@ const AboutPage = () => {
           
           <div className="features-grid">
             {features.map((feature, index) => (
-              <div key={index} className="feature-card" style={{ '--card-color': feature.color }}>
-                <div className="feature-icon-wrapper">
-                  {feature.icon}
-                </div>
-                <div className="feature-content">
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                </div>
-                <div className="feature-badge">
-                  <CheckCircle size={20} />
-                </div>
-              </div>
+              <FeatureCard key={index} {...feature} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="team-section">
-        <div className="container">
-          <div className="section-header center">
-            <h2 className="section-title">Meet Our Leadership</h2>
-            <p className="section-subtitle">
-              Passionate professionals dedicated to your satisfaction
-            </p>
-          </div>
-          
-          <div className="team-grid">
-            {team.map((member, index) => (
-              <div key={index} className="team-card">
-                <div className="team-image">
-                  <img src={member.image} alt={member.name} />
-                  <div className="experience-badge">
-                    <ThumbsUp size={16} />
-                    <span>{member.experience}</span>
-                  </div>
-                </div>
-                <div className="team-info">
-                  <h3>{member.name}</h3>
-                  <p className="team-role">{member.role}</p>
-                  <div className="team-contact">
-                    <Mail size={16} />
-                    <span>{member.name.split(' ')[0].toLowerCase()}@freshcart.com</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Certifications */}
-      <section className="certifications-section">
-        <div className="container">
-          <div className="section-header center">
-            <h2 className="section-title">Our Certifications</h2>
-            <p className="section-subtitle">
-              Recognized for excellence and commitment to quality
-            </p>
-          </div>
-          
-          <div className="certifications-grid">
-            {certifications.map((cert, index) => (
-              <div key={index} className="cert-card">
-                <div className="cert-icon">
-                  <CheckCircle size={32} />
-                </div>
-                <div className="cert-content">
-                  <h3>{cert.name}</h3>
-                  <p>{cert.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="container">
-          <div className="cta-card">
-            <div className="cta-content">
-              <div className="cta-icon">
-                <DeliveryTruck size={48} />
-              </div>
-              <h2>Ready to Experience Freshness?</h2>
-              <p>
-                Join our community of 25,000+ happy families enjoying premium groceries 
-                delivered right to their doorstep.
-              </p>
-            </div>
-            
-            <div className="cta-actions">
-              <button 
-                className="btn btn-primary" 
-                onClick={handleShopNow}
-              >
-                Start Shopping Now
-              </button>
-              <button className="btn btn-outline">
-                <Phone size={20} />
-                Call: 1800-FRESH-CART
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Contact Info */}
-      <section className="contact-info">
+      <section className="contact-info-section">
         <div className="container">
           <div className="contact-grid">
             <div className="contact-item">
-              <MapPin className="contact-icon" />
-              <div>
+              <div className="contact-icon-wrapper">
+                <MapPin className="contact-icon" />
+              </div>
+              <div className="contact-details">
                 <h4>Head Office</h4>
-                <p>FreshCart House, Sector 44, Gurugram, Haryana 122003</p>
+                <p>FreshCart House, Sector 44<br />Gurugram, Haryana 122003</p>
               </div>
             </div>
             
             <div className="contact-item">
-              <Phone className="contact-icon" />
-              <div>
+              <div className="contact-icon-wrapper">
+                <Phone className="contact-icon" />
+              </div>
+              <div className="contact-details">
                 <h4>24/7 Support</h4>
-                <p>1800-FRESH-CART • support@freshcart.com</p>
+                <p>1800-FRESH-CART<br />support@freshcart.com</p>
               </div>
             </div>
             
             <div className="contact-item">
-              <Mail className="contact-icon" />
-              <div>
+              <div className="contact-icon-wrapper">
+                <Mail className="contact-icon" />
+              </div>
+              <div className="contact-details">
                 <h4>Business Inquiries</h4>
-                <p>partners@freshcart.com • vendor@freshcart.com</p>
+                <p>partners@freshcart.com<br />vendor@freshcart.com</p>
               </div>
             </div>
           </div>
