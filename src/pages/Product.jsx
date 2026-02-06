@@ -306,64 +306,64 @@ const Product = () => {
   };
 
   return (
-    <div className="products-page">
+    <div className="products-container">
       {/* Hero Header */}
-      <div className="products-hero">
-        <div className="hero-background"></div>
-        <div className="container">
-          <div className="hero-content">
-            <div className="hero-badge">
+      <div className="products-hero-section">
+        <div className="hero-background-image"></div>
+        <div className="content-wrapper">
+          <div className="hero-text-content">
+            <div className="hero-tag">
               <Award size={18} />
               <span>Premium Quality Groceries</span>
             </div>
-            <h1 className="hero-title">Fresh Grocery Store</h1>
-            <p className="hero-subtitle">
+            <h1 className="hero-main-title">Fresh Grocery Store</h1>
+            <p className="hero-description">
               Discover premium quality groceries delivered fresh to your doorstep
             </p>
             
-            <div className="search-bar">
-              <div className="search-wrapper">
-                <Search className="search-icon" size={22} />
+            <div className="search-container">
+              <div className="search-input-wrapper">
+                <Search className="search-input-icon" size={22} />
                 <input
                   type="text"
                   placeholder="Search for fruits, vegetables, dairy & more..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="search-input"
+                  className="search-input-field"
                 />
                 {searchQuery && (
-                  <button className="clear-search" onClick={() => setSearchQuery('')}>
+                  <button className="clear-search-btn" onClick={() => setSearchQuery('')}>
                     <X size={20} />
                   </button>
                 )}
               </div>
-              <button className="search-btn">
+              <button className="search-submit-btn">
                 <Search size={20} />
                 Search
               </button>
             </div>
 
-            <div className="hero-features">
-              <div className="feature-item">
-                <div className="feature-icon">
+            <div className="hero-highlights">
+              <div className="highlight-item">
+                <div className="highlight-icon">
                   <Zap size={20} />
                 </div>
                 <span>2-Hour Express Delivery</span>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">
+              <div className="highlight-item">
+                <div className="highlight-icon">
                   <Shield size={20} />
                 </div>
                 <span>100% Fresh Guarantee</span>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">
+              <div className="highlight-item">
+                <div className="highlight-icon">
                   <Leaf size={20} />
                 </div>
                 <span>Organic Options</span>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">
+              <div className="highlight-item">
+                <div className="highlight-icon">
                   <Package size={20} />
                 </div>
                 <span>Free Delivery ₹499+</span>
@@ -374,44 +374,44 @@ const Product = () => {
       </div>
 
       {/* Main Content */}
-      <div className="products-main container">
+      <div className="products-main-wrapper content-wrapper">
         {/* Filters Sidebar */}
-        <aside className={`filters-sidebar ${showFilters ? 'show' : ''}`}>
-          <div className="sidebar-header">
+        <aside className={`filters-panel ${showFilters ? 'visible' : ''}`}>
+          <div className="panel-header">
             <h3>
               <Filter size={20} />
               Filters
             </h3>
-            <button className="close-filters" onClick={() => setShowFilters(false)}>
+            <button className="close-panel-btn" onClick={() => setShowFilters(false)}>
               <X size={22} />
             </button>
           </div>
 
-          <div className="filter-section">
-            <h4 className="filter-title">Categories</h4>
-            <div className="categories-list">
+          <div className="filter-group">
+            <h4 className="filter-group-title">Categories</h4>
+            <div className="categories-container">
               {categories.map(category => (
                 <button
                   key={category.id}
-                  className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                  className={`category-option ${selectedCategory === category.id ? 'selected' : ''}`}
                   onClick={() => setSelectedCategory(category.id)}
                 >
-                  <span className="category-icon">{category.icon}</span>
-                  <span className="category-name">{category.name}</span>
-                  <span className="category-count">{category.count}</span>
+                  <span className="category-emoji">{category.icon}</span>
+                  <span className="category-label">{category.name}</span>
+                  <span className="category-quantity">{category.count}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="filter-section">
-            <h4 className="filter-title">Price Range</h4>
-            <div className="price-filter">
-              <div className="price-display">
-                <span className="price-label">₹{priceRange[0]}</span>
-                <span className="price-label">₹{priceRange[1]}</span>
+          <div className="filter-group">
+            <h4 className="filter-group-title">Price Range</h4>
+            <div className="price-slider-container">
+              <div className="price-labels">
+                <span className="price-min">₹{priceRange[0]}</span>
+                <span className="price-max">₹{priceRange[1]}</span>
               </div>
-              <div className="price-sliders">
+              <div className="slider-track">
                 <input
                   type="range"
                   min="0"
@@ -419,7 +419,7 @@ const Product = () => {
                   step="50"
                   value={priceRange[0]}
                   onChange={(e) => setPriceRange([parseInt(e.target.value), priceRange[1]])}
-                  className="price-slider"
+                  className="price-slider-input"
                 />
                 <input
                   type="range"
@@ -428,44 +428,44 @@ const Product = () => {
                   step="50"
                   value={priceRange[1]}
                   onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                  className="price-slider"
+                  className="price-slider-input"
                 />
               </div>
             </div>
           </div>
 
-          <button className="clear-filters-btn" onClick={clearFilters}>
+          <button className="clear-filters-button" onClick={clearFilters}>
             <X size={18} />
             Clear All Filters
           </button>
         </aside>
 
         {/* Products Area */}
-        <main className="products-area">
+        <main className="products-display-area">
           {/* Controls Bar */}
-          <div className="controls-bar">
-            <div className="controls-left">
-              <button className="filter-toggle-btn" onClick={() => setShowFilters(!showFilters)}>
+          <div className="products-controls">
+            <div className="controls-left-section">
+              <button className="toggle-filters-button" onClick={() => setShowFilters(!showFilters)}>
                 <Filter size={20} />
                 Filters
               </button>
-              <div className="results-count">
+              <div className="products-count">
                 <TrendingUp size={18} />
                 Showing <strong>{filteredProducts.length}</strong> of <strong>{products.length}</strong> products
               </div>
             </div>
 
-            <div className="controls-right">
-              <div className="view-toggle">
+            <div className="controls-right-section">
+              <div className="display-toggle">
                 <button
-                  className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+                  className={`display-option ${viewMode === 'grid' ? 'active' : ''}`}
                   onClick={() => setViewMode('grid')}
                   title="Grid View"
                 >
                   <Grid size={20} />
                 </button>
                 <button
-                  className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
+                  className={`display-option ${viewMode === 'list' ? 'active' : ''}`}
                   onClick={() => setViewMode('list')}
                   title="List View"
                 >
@@ -473,11 +473,11 @@ const Product = () => {
                 </button>
               </div>
 
-              <div className="sort-dropdown">
+              <div className="sorting-dropdown">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="sort-select"
+                  className="sort-select-input"
                 >
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
@@ -485,45 +485,45 @@ const Product = () => {
                   <option value="rating">Top Rated</option>
                   <option value="discount">Best Discount</option>
                 </select>
-                <ChevronDown size={18} className="dropdown-icon" />
+                <ChevronDown size={18} className="dropdown-arrow" />
               </div>
             </div>
           </div>
 
           {/* Products Display */}
           {loading ? (
-            <div className="loading-state">
-              <div className="loader"></div>
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
               <p>Loading fresh products...</p>
             </div>
           ) : filteredProducts.length === 0 ? (
-            <div className="no-results">
-              <div className="no-results-icon">🔍</div>
+            <div className="no-products-found">
+              <div className="no-products-icon">🔍</div>
               <h3>No products found</h3>
               <p>Try adjusting your filters or search terms</p>
-              <button className="reset-btn" onClick={clearFilters}>
+              <button className="reset-filters-button" onClick={clearFilters}>
                 <X size={18} />
                 Reset Filters
               </button>
             </div>
           ) : (
-            <div className={`products-display ${viewMode}`}>
+            <div className={`products-grid ${viewMode}`}>
               {filteredProducts.map(product => {
                 const isInWishlist = wishlist.includes(product.id);
                 const cartItem = cartItems.find(item => item.id === product.id);
                 const quantity = cartItem ? cartItem.quantity : 0;
 
                 return (
-                  <article key={product.id} className="product-card">
-                    <div className="product-badges">
+                  <article key={product.id} className="product-item">
+                    <div className="product-tags">
                       {product.discount > 0 && (
-                        <span className="badge discount">
+                        <span className="tag discount-tag">
                           <Tag size={14} />
                           {product.discount}% OFF
                         </span>
                       )}
                       {product.tags.includes('organic') && (
-                        <span className="badge organic">
+                        <span className="tag organic-tag">
                           <Leaf size={14} />
                           Organic
                         </span>
@@ -531,24 +531,24 @@ const Product = () => {
                     </div>
 
                     <button
-                      className={`wishlist-btn ${isInWishlist ? 'active' : ''}`}
+                      className={`wishlist-toggle ${isInWishlist ? 'active' : ''}`}
                       onClick={() => toggleWishlist(product.id)}
                       aria-label="Add to wishlist"
                     >
                       <Heart size={20} fill={isInWishlist ? 'currentColor' : 'none'} />
                     </button>
 
-                    <div className="product-image">
+                    <div className="product-img-container">
                       <img src={product.image} alt={product.name} loading="lazy" />
                     </div>
 
-                    <div className="product-info">
-                      <div className="product-category">{product.category.replace('-', ' ')}</div>
-                      <h3 className="product-name">{product.name}</h3>
-                      <div className="product-brand">{product.brand}</div>
+                    <div className="product-details">
+                      <div className="product-type">{product.category.replace('-', ' ')}</div>
+                      <h3 className="product-title">{product.name}</h3>
+                      <div className="product-maker">{product.brand}</div>
                       
-                      <div className="product-rating">
-                        <div className="stars">
+                      <div className="product-rating-container">
+                        <div className="rating-stars">
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
@@ -558,42 +558,42 @@ const Product = () => {
                             />
                           ))}
                         </div>
-                        <span className="rating-value">{product.rating}</span>
-                        <span className="reviews">({product.reviews})</span>
+                        <span className="rating-score">{product.rating}</span>
+                        <span className="review-count">({product.reviews})</span>
                       </div>
 
-                      <div className="product-price">
-                        <span className="current-price">₹{product.price}</span>
+                      <div className="product-pricing">
+                        <span className="price-now">₹{product.price}</span>
                         {product.originalPrice > product.price && (
-                          <span className="original-price">₹{product.originalPrice}</span>
+                          <span className="price-original">₹{product.originalPrice}</span>
                         )}
-                        <span className="price-unit">/{product.unit}</span>
+                        <span className="price-measure">/{product.unit}</span>
                       </div>
 
-                      <div className="product-meta">
-                        <div className="meta-item">
+                      <div className="product-info-row">
+                        <div className="info-item">
                           <Clock size={16} />
                           <span>{product.delivery}</span>
                         </div>
-                        <div className="meta-item stock">
+                        <div className="info-item stock-info">
                           <Check size={16} />
                           <span>{product.stock} in stock</span>
                         </div>
                       </div>
 
-                      <div className="product-actions">
+                      <div className="product-actions-row">
                         {quantity > 0 ? (
-                          <div className="quantity-controls">
+                          <div className="quantity-selector">
                             <button
-                              className="qty-btn"
+                              className="quantity-btn"
                               onClick={() => handleAddToCart(product)}
                               aria-label="Add more"
                             >
                               <Plus size={18} />
                             </button>
-                            <span className="qty-display">{quantity}</span>
+                            <span className="quantity-display">{quantity}</span>
                             <button
-                              className="qty-btn"
+                              className="quantity-btn"
                               onClick={() => navigate('/cart')}
                               aria-label="View cart"
                             >
@@ -602,7 +602,7 @@ const Product = () => {
                           </div>
                         ) : (
                           <button
-                            className="add-to-cart-btn"
+                            className="add-cart-button"
                             onClick={() => handleAddToCart(product)}
                           >
                             <ShoppingBag size={18} />
@@ -610,7 +610,7 @@ const Product = () => {
                           </button>
                         )}
                         <button
-                          className="buy-now-btn"
+                          className="buy-now-button"
                           onClick={() => handleBuyNow(product)}
                         >
                           Buy Now
@@ -625,17 +625,17 @@ const Product = () => {
 
           {/* Pagination */}
           {filteredProducts.length > 12 && (
-            <div className="pagination">
-              <button className="page-btn disabled">
+            <div className="pagination-container">
+              <button className="page-navigation disabled">
                 <ChevronRight size={18} style={{ transform: 'rotate(180deg)' }} />
                 Previous
               </button>
-              <button className="page-btn active">1</button>
-              <button className="page-btn">2</button>
-              <button className="page-btn">3</button>
+              <button className="page-navigation active">1</button>
+              <button className="page-navigation">2</button>
+              <button className="page-navigation">3</button>
               <span className="page-dots">...</span>
-              <button className="page-btn">5</button>
-              <button className="page-btn">
+              <button className="page-navigation">5</button>
+              <button className="page-navigation">
                 Next
                 <ChevronRight size={18} />
               </button>
@@ -644,70 +644,70 @@ const Product = () => {
         </main>
 
         {/* Cart Summary Sidebar */}
-        <aside className="cart-summary-sidebar">
-          <div className="cart-header">
+        <aside className="cart-preview">
+          <div className="cart-preview-header">
             <h3>
               <ShoppingBag size={22} />
               Your Cart
             </h3>
             {cartItems.length > 0 && (
-              <div className="cart-count-badge">
+              <div className="cart-items-count">
                 {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
               </div>
             )}
           </div>
 
           {cartItems.length === 0 ? (
-            <div className="empty-cart">
+            <div className="empty-cart-message">
               <ShoppingBag size={56} />
               <p>Your cart is empty</p>
               <span>Add some fresh products!</span>
             </div>
           ) : (
             <>
-              <div className="cart-items-list">
+              <div className="cart-preview-items">
                 {cartItems.slice(0, 3).map(item => (
-                  <div key={item.id} className="cart-item">
-                    <div className="cart-item-image">
+                  <div key={item.id} className="preview-item">
+                    <div className="preview-item-image">
                       <img src={item.image} alt={item.name} />
                     </div>
-                    <div className="cart-item-details">
+                    <div className="preview-item-info">
                       <h4>{item.name}</h4>
-                      <div className="cart-item-meta">
-                        <span className="cart-item-price">₹{item.price}</span>
-                        <span className="cart-item-qty">×{item.quantity}</span>
+                      <div className="preview-item-meta">
+                        <span className="item-price">₹{item.price}</span>
+                        <span className="item-quantity">×{item.quantity}</span>
                       </div>
                     </div>
-                    <div className="cart-item-total">₹{item.price * item.quantity}</div>
+                    <div className="preview-item-total">₹{item.price * item.quantity}</div>
                   </div>
                 ))}
                 {cartItems.length > 3 && (
-                  <div className="view-all-items" onClick={() => navigate('/cart')}>
+                  <div className="view-all-cart-items" onClick={() => navigate('/cart')}>
                     View all {cartItems.length} items
                     <ChevronRight size={16} />
                   </div>
                 )}
               </div>
 
-              <div className="cart-summary">
-                <div className="summary-row">
+              <div className="cart-summary-section">
+                <div className="summary-line">
                   <span>Subtotal</span>
                   <span>₹{cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)}</span>
                 </div>
-                <div className="summary-row">
+                <div className="summary-line">
                   <span>Delivery</span>
-                  <span className="free">FREE</span>
+                  <span className="free-delivery">FREE</span>
                 </div>
-                <div className="summary-row">
+                <div className="summary-line">
                   <span>Tax (5%)</span>
                   <span>₹{(cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.05).toFixed(0)}</span>
                 </div>
-                <div className="summary-row total">
+                <div className="summary-line total-line">
                   <span>Total</span>
                   <span>₹{(cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 1.05).toFixed(0)}</span>
                 </div>
 
-                <button className="checkout-btn" onClick={() => navigate('/checkout')}>
+                <button className="checkout-proceed-button" onClick={() => navigate('/checkout')}>
                   <Shield size={20} />
                   Proceed to Checkout
                 </button>

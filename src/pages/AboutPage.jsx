@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Truck, Shield, Leaf, Users, Package, Clock, Award, Star,
@@ -50,6 +50,10 @@ const TeamCard = memo(({ member }) => (
         alt={member.name} 
         className="team-image"
         loading="lazy"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = `https://ui-avatars.com/api/?name=${member.name}&background=10b981&color=fff&size=400`;
+        }}
       />
       <div className="experience-badge">
         <ThumbsUp size={16} />
@@ -69,6 +73,32 @@ const TeamCard = memo(({ member }) => (
 
 const AboutPage = () => {
   const navigate = useNavigate();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Preload images on component mount
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imageUrls = [
+        'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face',
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+        'https://images.pexels.com/photos/4065181/pexels-photo-4065181.jpeg'
+      ];
+
+      const promises = imageUrls.map(url => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = url;
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      });
+
+      await Promise.all(promises);
+      setIsLoaded(true);
+    };
+
+    preloadImages();
+  }, []);
 
   const stats = [
     { icon: <Truck />, value: '50K+', label: 'Orders Delivered' },
@@ -157,8 +187,20 @@ const AboutPage = () => {
     { name: 'Green Certified', description: 'Sustainable Operations' }
   ];
 
+  // Loading state
+  if (!isLoaded) {
+    return (
+      <div className="about-page">
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+          <p>Loading Fresh Content...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="about-page">
+    <div className="about-page" style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}>
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container">
@@ -290,10 +332,63 @@ const AboutPage = () => {
         </div>
       </section>
 
- 
+      {/* Features Section */}
+      <section className="features-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Why Choose FreshCart?</h2>
+            <p className="section-subtitle">
+              Experience the difference with our premium services
+            </p>
+          </div>
+          
+          <div className="features-grid">
+            {features.map((feature, index) => (
+              <FeatureCard key={index} {...feature} />
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* Team Section */}
+      <section className="team-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Meet Our Leadership</h2>
+            <p className="section-subtitle">
+              Passionate experts dedicated to delivering excellence
+            </p>
+          </div>
+          
+          <div className="team-grid">
+            {team.map((member, index) => (
+              <TeamCard key={index} member={member} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-
+      {/* Certifications */}
+      <section className="certifications-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Certifications & Accolades</h2>
+            <p className="section-subtitle">
+              Recognized for excellence in quality and service
+            </p>
+          </div>
+          
+          <div className="certifications-grid">
+            {certifications.map((cert, index) => (
+              <div key={index} className="cert-card">
+                <div className="cert-icon">✓</div>
+                <h3>{cert.name}</h3>
+                <p>{cert.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Contact Info */}
       <section className="contact-info-section">

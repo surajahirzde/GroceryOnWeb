@@ -15,6 +15,37 @@
   padding: 0 24px;
 }
 
+/* Loading Overlay */
+.loading-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background: #f9fafb;
+}
+
+.loading-overlay .loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #10b981;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.loading-overlay p {
+  color: #6b7280;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* ==================== TYPOGRAPHY ==================== */
 
 .section-header {
@@ -577,9 +608,158 @@
   transform: scale(1);
 }
 
+/* ==================== TEAM SECTION ==================== */
 
+.team-section {
+  padding: 100px 0;
+  background: white;
+}
 
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
+.team-card {
+  background: #f9fafb;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+}
+
+.team-image-wrapper {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.team-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-image {
+  transform: scale(1.05);
+}
+
+.experience-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.team-info {
+  padding: 28px;
+}
+
+.team-info h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.team-role {
+  color: #10b981;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.team-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7280;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ==================== CERTIFICATIONS SECTION ==================== */
+
+.certifications-section {
+  padding: 100px 0;
+  background: #f9fafb;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cert-card {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-card:hover {
+  border-color: #10b981;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.15);
+}
+
+.cert-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: #10b981;
+  font-size: 1.75rem;
+  font-weight: 800;
+  transition: transform 0.2s ease;
+}
+
+.cert-card:hover .cert-icon {
+  transform: scale(1.05);
+}
+
+.cert-card h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.cert-card p {
+  color: #6b7280;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
 
 /* ==================== CONTACT INFO SECTION ==================== */
 
@@ -700,7 +880,13 @@
     left: 13px;
   }
   
-
+  .mission-grid,
+  .values-grid,
+  .features-grid,
+  .team-grid,
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -712,23 +898,20 @@
     font-size: 1.75rem;
   }
   
-  .mission-grid,
-  .values-grid,
-  .features-grid,
-  .team-grid,
-  .certifications-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .stat-card,
   .mission-card,
   .value-card,
   .feature-card,
+  .team-card,
   .cert-card {
     padding: 24px;
   }
   
-
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
 }
 
 /* Performance optimizations */
@@ -739,6 +922,7 @@
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 /* Reduce motion for users who prefer it */
@@ -749,5 +933,19 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Ensure smooth loading */
+.about-page {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
