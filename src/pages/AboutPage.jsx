@@ -290,24 +290,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="features-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Why Choose FreshCart</h2>
-            <p className="section-subtitle">
-              Experience the difference in every delivery
-            </p>
-          </div>
-          
-          <div className="features-grid">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} {...feature} />
-            ))}
-          </div>
-        </div>
-      </section>
-
+ 
 
 
 

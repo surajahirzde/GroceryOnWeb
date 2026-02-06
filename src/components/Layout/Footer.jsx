@@ -32,32 +32,7 @@ const Footer = () => {
   return (
     <footer className="footer-section">
       {/* Top Footer */}
-      <div className="footer-top">
-        <div className="footer-container">
-          <div className="footer-newsletter">
-            <div className="newsletter-content">
-              <h3 className="newsletter-title">
-                <span className="newsletter-icon">📧</span>
-                Subscribe to Our Newsletter
-              </h3>
-              <p className="newsletter-subtitle">
-                Get daily deals and fresh offers delivered to your inbox
-              </p>
-            </div>
-            <div className="newsletter-form">
-              <input 
-                type="email" 
-                placeholder="Enter your email address"
-                className="newsletter-input"
-              />
-              <button className="newsletter-btn">
-                Subscribe
-                <span className="btn-arrow">→</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+     
 
       {/* Main Footer */}
       <div className="footer-main">
@@ -68,7 +43,7 @@ const Footer = () => {
               <div className="footer-logo">
                 <span className="logo-icon">🛒</span>
                 <div className="logo-text">
-                  <h3 className="brand-name">FreshCart</h3>
+                  <h3 className="brand-name">GroceryOnWeb</h3>
                   <p className="brand-tagline">Premium Groceries</p>
                 </div>
               </div>
