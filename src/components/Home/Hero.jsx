@@ -69,9 +69,9 @@ const Hero = () => {
 
       {/* Floating Vegetables */}
       <div className="hero-floating-elements">
-        <div className="hero-float-item hero-float-1">🥦</div>
+     
         <div className="hero-float-item hero-float-2">🍎</div>
-        <div className="hero-float-item hero-float-3">🥕</div>
+      
         <div className="hero-float-item hero-float-4">🥑</div>
         <div className="hero-float-item hero-float-5">🍇</div>
         <div className="hero-float-item hero-float-6">🍋</div>
@@ -277,47 +277,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Offers Marquee */}
-      <div className="hero-offers-section">
-        <div className="hero-offers-marquee">
-          <div className="hero-offers-label">
-            <span className="hero-offers-flame">🔥</span>
-            <span className="hero-offers-title">HOT OFFERS</span>
-          </div>
-          
-          <div className="hero-offers-slider">
-            <div className="hero-offers-track">
-              {offers.map((offer, index) => (
-                <div 
-                  key={index} 
-                  className={`hero-offer-item ${index === currentOffer ? 'hero-offer-active' : ''}`}
-                >
-                  <span className="hero-offer-emoji">{offer.emoji}</span>
-                  <span className="hero-offer-text">{offer.text}</span>
-                  <span className="hero-offer-code">
-                    <span className="hero-code-label">Code:</span>
-                    <span className="hero-code-value">{offer.code}</span>
-                  </span>
-                  <button className="hero-offer-copy">
-                    <span className="hero-copy-icon">📋</span>
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="hero-offers-dots">
-            {offers.map((_, index) => (
-              <button
-                key={index}
-                className={`hero-offer-dot ${index === currentOffer ? 'hero-dot-active' : ''}`}
-                onClick={() => setCurrentOffer(index)}
-                aria-label={`Go to offer ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+ 
     </section>
   );
 };

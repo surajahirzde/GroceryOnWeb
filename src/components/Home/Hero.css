@@ -35,6 +35,7 @@
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-top: 1.5rem;
 }
 
 .hero-section.hero-visible {
@@ -247,10 +248,7 @@
   }
 }
 
-.hero-badge-icon {
-  font-size: 20px;
-  animation: hero-rotate 3s linear infinite;
-}
+
 
 @keyframes hero-rotate {
   from {
@@ -317,7 +315,7 @@
   color: var(--hero-white);
   padding: 8px 20px;
   border-radius: 12px;
-  font-size: 48px;
+  font-size: 38px;
   margin-left: 12px;
   box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
   animation: hero-wiggle 1s ease-in-out infinite;
@@ -866,156 +864,6 @@
   line-height: 1.5;
 }
 
-/* Offers Section */
-.hero-offers-section {
-  margin-top: 60px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-offers-marquee {
-  max-width: 1400px;
-  margin: 0 auto;
-  background: var(--hero-white);
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: var(--hero-shadow-lg);
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.hero-offers-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  padding: 12px 24px;
-  border-radius: 16px;
-  flex-shrink: 0;
-}
-
-.hero-offers-flame {
-  font-size: 20px;
-  animation: hero-flame 0.5s infinite alternate;
-}
-
-@keyframes hero-flame {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.2);
-  }
-}
-
-.hero-offers-title {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--hero-white);
-  letter-spacing: 1px;
-}
-
-.hero-offers-slider {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-}
-
-.hero-offers-track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.hero-offer-item {
-  min-width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.hero-offer-item.hero-offer-active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.hero-offer-emoji {
-  font-size: 32px;
-  flex-shrink: 0;
-}
-
-.hero-offer-text {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--hero-dark);
-  flex: 1;
-}
-
-.hero-offer-code {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f3f4f6;
-  padding: 8px 16px;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.hero-code-label {
-  font-size: 12px;
-  color: #6b7280;
-}
-
-.hero-code-value {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--hero-primary);
-  font-family: 'Courier New', monospace;
-}
-
-.hero-offer-copy {
-  background: var(--hero-primary);
-  color: var(--hero-white);
-  border: none;
-  padding: 10px 16px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: var(--hero-transition);
-  flex-shrink: 0;
-}
-
-.hero-offer-copy:hover {
-  background: #059669;
-  transform: scale(1.1);
-}
-
-.hero-offers-dots {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.hero-offer-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #d1d5db;
-  border: none;
-  cursor: pointer;
-  transition: var(--hero-transition);
-  padding: 0;
-}
-
-.hero-offer-dot.hero-dot-active {
-  background: var(--hero-primary);
-  width: 24px;
-  border-radius: 4px;
-}
 
 /* ============================================
    RESPONSIVE DESIGN
