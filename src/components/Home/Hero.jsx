@@ -96,7 +96,7 @@ const Hero = () => {
               Grocery Store
             </span>
             <span className="hero-title-line">Delivered in 
-              <span className="hero-time-badge"> 2 Hours</span>
+              <span className="hero-time-badge"> Minutes</span>
             </span>
           </h1>
 
@@ -215,7 +215,7 @@ const Hero = () => {
               </div>
               <div className="hero-delivery-info">
                 <div className="hero-delivery-title">Fast Delivery</div>
-                <div className="hero-delivery-time">Within 2 Hours</div>
+                <div className="hero-delivery-time">Within Minutes</div>
               </div>
               <div className="hero-delivery-progress">
                 <div className="hero-progress-bar"></div>
