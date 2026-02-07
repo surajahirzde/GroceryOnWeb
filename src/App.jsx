@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
 import Product from './pages/Product';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
+import ReturnsPage from './pages/ReturnsPage';
 
 // Lazy load pages
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -67,6 +70,9 @@ function App() {
                 <Route path="/products" element={<Product />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/order-success/:orderId" element={<OrderSuccessPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/privacy" element={<PrivacyPage/>} />
+              <Route path="/returns" element={<ReturnsPage />} />
             
 
 

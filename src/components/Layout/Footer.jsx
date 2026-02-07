@@ -6,20 +6,19 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { to: "/", label: "Home", icon: "🏠" },
+   
     { to: "/products", label: "Products", icon: "🛒" },
+    { to:"/terms", label: "Terms of Service", icon: "📜" },
+    {to: "/privacy", label: "Privacy Policy", icon: "🔒" },
+    {to:"/returns", label: "Return Policy", icon: "🔄" },
 
 
-    { to: "/about", label: "About Us", icon: "📖" },
-    { to: "/contact", label: "Contact", icon: "📞" },
-
-    { to: "/cart", label: "My Cart", icon: "🛍️" }
   ];
 
   const contactInfo = [
-    { icon: "📞", text: "+91 98765 43210" },
-    { icon: "📧", text: "support@grocerystore.com" },
-    { icon: "📍", text: "123, Grocery Street, Delhi, India" }
+    { icon: "📞", text: "+9211336186" },
+    { icon: "📧", text: "groceryonweb188@gmail.com" },
+    { icon: "📍", text: "SCO-4 DAYAL Bagh Market , Sector -39, Faridabad - 121009" }
   ];
 
   const deliveryHours = [
@@ -68,7 +67,10 @@ const Footer = () => {
               <ul className="footer-links">
                 {quickLinks.map((link, index) => (
                   <li key={index} className="footer-link-item">
-                    <Link to={link.to} className="footer-link">
+                    <Link to={link.to}    onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              closeMenu();
+            }}     className="footer-link"     >
                       <span className="link-icon">{link.icon}</span>
                       {link.label}
                     </Link>

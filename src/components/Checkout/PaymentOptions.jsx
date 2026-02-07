@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './PaymentOptions.css';
 
-const PaymentOptions = ({ onPaymentSelect }) => {
+const PaymentOptions = ({ onPaymentSelect,selectedPayment, setSelectedPayment }) => {
   const [selectedOption, setSelectedOption] = useState('cod');
   const [upiId, setUpiId] = useState('');
 
@@ -28,10 +28,12 @@ const PaymentOptions = ({ onPaymentSelect }) => {
       note: 'Visa, MasterCard, RuPay'
     }
   ];
+     
 
   const handleSelect = (methodId) => {
     setSelectedOption(methodId);
     onPaymentSelect(methodId);
+     setSelectedPayment(methodId); 
   };
 
   const handleUpiIdChange = (e) => {
@@ -56,15 +58,7 @@ const PaymentOptions = ({ onPaymentSelect }) => {
                 <span className="method-icon">{method.icon}</span>
               </div>
               
-              <div className="method-radio">
-                <div className={`radio-circle ${
-                  selectedOption === method.id ? 'checked' : ''
-                }`}>
-                  {selectedOption === method.id && (
-                    <div className="radio-dot"></div>
-                  )}
-                </div>
-              </div>
+        
             </div>
             
             <div className="method-details">

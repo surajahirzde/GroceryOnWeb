@@ -33,7 +33,7 @@ const FeatureCard = memo(({ icon, title, description, color }) => (
 
 const ValueCard = memo(({ icon, title, description, index }) => (
   <div className="value-card">
-    <div className="value-icon">{icon}</div>
+    <div className="value-icon">{icon}</div> 
     <div className="value-content">
       <h3>{title}</h3>
       <p>{description}</p>
@@ -368,28 +368,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Certifications */}
-      <section className="certifications-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Certifications & Accolades</h2>
-            <p className="section-subtitle">
-              Recognized for excellence in quality and service
-            </p>
-          </div>
-          
-          <div className="certifications-grid">
-            {certifications.map((cert, index) => (
-              <div key={index} className="cert-card">
-                <div className="cert-icon">✓</div>
-                <h3>{cert.name}</h3>
-                <p>{cert.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    
       {/* Contact Info */}
       <section className="contact-info-section">
         <div className="container">
@@ -413,6 +392,7 @@ const AboutPage = () => {
                 <p>1800-FRESH-CART<br />support@freshcart.com</p>
               </div>
             </div>
+            
             
             <div className="contact-item">
               <div className="contact-icon-wrapper">

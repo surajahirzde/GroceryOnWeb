@@ -15,13 +15,16 @@ const CheckoutPage = () => {
   const [orderId, setOrderId] = useState('');
   const [loading, setLoading] = useState(true);
 
+
+  const [selectedPayment, setSelectedPayment] = useState('');
+
   // Load cart items
   useEffect(() => {
     const savedCart = localStorage.getItem('cartItems');
     if (savedCart) {
       const parsedCart = JSON.parse(savedCart);
       setCartItems(parsedCart);
-      
+
       if (parsedCart.length === 0) {
         navigate('/cart');
         return;
@@ -47,7 +50,7 @@ const CheckoutPage = () => {
     // Generate order ID
     const newOrderId = 'GROC' + Date.now().toString().slice(-8);
     setOrderId(newOrderId);
-    
+
     // Save order
     const order = {
       id: newOrderId,
@@ -58,15 +61,15 @@ const CheckoutPage = () => {
       status: 'confirmed',
       estimatedDelivery: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString()
     };
-    
+
     const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
     localStorage.setItem('orders', JSON.stringify([...existingOrders, order]));
-    
+
     // Clear cart
     localStorage.removeItem('cartItems');
     localStorage.setItem('cartCount', '0');
     window.dispatchEvent(new Event('storage'));
-    
+
     setOrderPlaced(true);
   };
 
@@ -88,16 +91,16 @@ const CheckoutPage = () => {
             <div className="success-icon">✅</div>
             <div className="success-circle"></div>
           </div>
-          
+
           <h1 className="success-title">Order Confirmed!</h1>
           <p className="success-subtitle">Your groceries are being prepared</p>
-          
+
           <div className="order-details-card">
             <div className="order-id-display">
               <span className="order-id-label">Order ID:</span>
               <span className="order-id-value">{orderId}</span>
             </div>
-            
+
             <div className="delivery-info">
               <div className="delivery-icon">🚚</div>
               <div className="delivery-details">
@@ -106,7 +109,7 @@ const CheckoutPage = () => {
                 <p className="delivery-note">Our delivery executive will call you before arrival</p>
               </div>
             </div>
-            
+
             {paymentMethod === 'cod' && (
               <div className="cod-notice">
                 <div className="cod-icon">💰</div>
@@ -117,16 +120,16 @@ const CheckoutPage = () => {
               </div>
             )}
           </div>
-          
+
           <div className="success-actions">
-            <button 
+            <button
               onClick={() => navigate('/orders')}
               className="view-orders-btn"
             >
               <span className="btn-icon">📋</span>
               View My Orders
             </button>
-            <button 
+            <button
               onClick={() => navigate('/')}
               className="continue-shopping-btn"
             >
@@ -147,7 +150,7 @@ const CheckoutPage = () => {
   return (
     <div className="checkout-page-container">
       <div className="checkout-content-wrapper">
-        
+
         {/* Progress Steps */}
         <div className="checkout-progress">
           <div className="progress-steps">
@@ -159,9 +162,9 @@ const CheckoutPage = () => {
               </div>
               <div className="step-icon">📍</div>
             </div>
-            
+
             <div className={`progress-connector ${step >= 2 ? 'active' : ''}`}></div>
-            
+
             <div className={`progress-step ${step >= 2 ? 'active' : ''} ${step > 2 ? 'completed' : ''}`}>
               <div className="step-number">2</div>
               <div className="step-info">
@@ -170,9 +173,9 @@ const CheckoutPage = () => {
               </div>
               <div className="step-icon">💳</div>
             </div>
-            
+
             <div className={`progress-connector ${step >= 3 ? 'active' : ''}`}></div>
-            
+
             <div className={`progress-step ${step >= 3 ? 'active' : ''}`}>
               <div className="step-number">3</div>
               <div className="step-info">
@@ -186,7 +189,7 @@ const CheckoutPage = () => {
 
         {/* Main Checkout Layout */}
         <div className="checkout-main-layout">
-          
+
           {/* Left: Form Section */}
           <div className="checkout-form-section">
             {step === 1 && (
@@ -201,7 +204,7 @@ const CheckoutPage = () => {
                 <AddressForm onAddressSubmit={handleAddressSubmit} />
               </div>
             )}
-            
+
             {step === 2 && (
               <div className="step-content">
                 <div className="step-header">
@@ -211,13 +214,16 @@ const CheckoutPage = () => {
                   </h2>
                   <p className="step-subtitle">Choose how you want to pay</p>
                 </div>
-                <PaymentOptions 
+                <PaymentOptions
                   onPaymentSelect={handlePaymentSelect}
                   totalAmount={total}
+                  selectedPayment={selectedPayment}     // Pass selected payment to maintain state in PaymentOptions
+                  setSelectedPayment={setSelectedPayment}  // Pass setter to update selected payment from PaymentOptions
+
                 />
               </div>
             )}
-            
+
             {step === 3 && (
               <div className="step-content">
                 <div className="step-header">
@@ -227,7 +233,7 @@ const CheckoutPage = () => {
                   </h2>
                   <p className="step-subtitle">Please verify all details before placing your order</p>
                 </div>
-                
+
                 <div className="review-section">
                   {/* Address Review */}
                   {address && (
@@ -240,7 +246,7 @@ const CheckoutPage = () => {
                         <p className="address-name"><strong>{address.name}</strong></p>
                         <p className="address-details">{address.address}, {address.city}</p>
                         <p className="address-contact">📱 {address.phone}</p>
-                        <button 
+                        <button
                           onClick={() => setStep(1)}
                           className="edit-btn"
                         >
@@ -250,7 +256,7 @@ const CheckoutPage = () => {
                       </div>
                     </div>
                   )}
-                  
+
                   {/* Payment Review */}
                   {paymentMethod && (
                     <div className="review-card">
@@ -261,20 +267,20 @@ const CheckoutPage = () => {
                       <div className="review-card-content">
                         <div className="payment-method-display">
                           <span className="payment-icon">
-                            {paymentMethod === 'cod' ? '💰' : 
-                             paymentMethod === 'card' ? '💳' : 
-                             paymentMethod === 'upi' ? '📱' : '🏦'}
+                            {paymentMethod === 'cod' ? '💰' :
+                              paymentMethod === 'card' ? '💳' :
+                                paymentMethod === 'upi' ? '📱' : '🏦'}
                           </span>
                           <div className="payment-details">
                             <h4>
                               {paymentMethod === 'cod' ? 'Cash on Delivery' :
-                               paymentMethod === 'card' ? 'Credit/Debit Card' :
-                               paymentMethod === 'upi' ? 'UPI Payment' : 'Net Banking'}
+                                paymentMethod === 'card' ? 'Credit/Debit Card' :
+                                  paymentMethod === 'upi' ? 'UPI Payment' : 'Net Banking'}
                             </h4>
                             <p>Selected payment method</p>
                           </div>
                         </div>
-                        <button 
+                        <button
                           onClick={() => setStep(2)}
                           className="edit-btn"
                         >
@@ -287,11 +293,11 @@ const CheckoutPage = () => {
                 </div>
               </div>
             )}
-            
+
             {/* Navigation Buttons */}
             <div className="navigation-buttons">
               {step > 1 && (
-                <button 
+                <button
                   onClick={() => setStep(step - 1)}
                   className="nav-btn nav-btn-back"
                 >
@@ -299,9 +305,9 @@ const CheckoutPage = () => {
                   Back
                 </button>
               )}
-              
+
               {step === 3 && (
-                <button 
+                <button
                   onClick={() => navigate('/cart')}
                   className="nav-btn nav-btn-edit"
                 >
@@ -320,8 +326,9 @@ const CheckoutPage = () => {
               paymentMethod={paymentMethod}
               onPlaceOrder={handlePlaceOrder}
               currentStep={step}
+              selectedPayment={selectedPayment}   // Pass selected payment to OrderSummary for final review
             />
-            
+
             {/* Security Assurance */}
             <div className="security-assurance">
               <div className="security-item">

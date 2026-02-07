@@ -36,7 +36,7 @@ const ContactPage = () => {
       icon: <Phone />,
       title: 'Call Us',
       text: '24/7 Customer Support',
-      info: '1800-FRESH-CART',
+      info: '9211336188',
       detail: 'Toll-Free Number',
       button: 'Call Now',
       color: '#10B981'
@@ -45,7 +45,7 @@ const ContactPage = () => {
       icon: <Mail />,
       title: 'Email Us',
       text: 'Quick Response Guaranteed',
-      info: 'help@freshcart.com',
+      info: 'groceryonweb188@gmail.com',
       detail: 'Reply within 2 hours',
       button: 'Send Email',
       color: '#3B82F6'
@@ -54,7 +54,7 @@ const ContactPage = () => {
       icon: <MessageCircle />,
       title: 'Live Chat',
       text: 'Instant Support',
-      info: 'Chat Available Now',
+      info: 'Chat Available Soon',
       detail: 'Average wait: 30 sec',
       button: 'Start Chat',
       color: '#8B5CF6'
@@ -63,7 +63,7 @@ const ContactPage = () => {
       icon: <Headphones />,
       title: 'WhatsApp',
       text: 'Quick Queries',
-      info: '+91 98765 43210',
+      info: '9211336186',
       detail: 'Message us anytime',
       button: 'WhatsApp Us',
       color: '#25D366'
@@ -116,10 +116,10 @@ const ContactPage = () => {
   ];
 
   const storeInfo = {
-    address: 'FreshCart House, Sector 44, Gurugram, Haryana 122003',
+    address: '"SCO-4 DAYAL Bagh Market , Sector -39, Faridabad - 121009"',
     hours: '6:00 AM - 11:00 PM',
-    phone: '+91 98765 43210',
-    email: 'store@freshcart.com'
+    phone: '9211336186',
+    email: 'groceryonweb188@gmail.com'
   };
 
   const handleChange = (e) => {
@@ -258,7 +258,7 @@ const ContactPage = () => {
                           <input
                             type="tel"
                             name="phone"
-                            placeholder="+91 98765 43210"
+                            placeholder="+9211336186"
                             value={formData.phone}
                             onChange={handleChange}
                             required

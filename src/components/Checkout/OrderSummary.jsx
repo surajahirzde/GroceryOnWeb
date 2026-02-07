@@ -2,25 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './OrderSummary.css';
 import { useState } from 'react';
-
 import Payment from '../Checkout/Payment.jsx';
 
-
-
-const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep = 3 }) => {
+// 👇 CHANGE 1: selectedPayment prop add karo yahan
+const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep = 3, selectedPayment }) => {
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const deliveryFee = subtotal > 499 ? 0 : 40;
   const tax = subtotal * 0.18;
   const total = subtotal + deliveryFee + tax;
 
-  const [ payment , setPayment ] = useState(false);
-
-
+  const [payment, setPayment] = useState(false);
 
   // Add COD charge if selected
   const finalTotal = paymentMethod === 'cod' ? total + 10 : total;
   const itemCount = items.reduce((count, item) => count + item.quantity, 0);
-  
+
   const isOrderReady = address && paymentMethod && currentStep === 3;
 
   const formatAddress = () => {
@@ -29,7 +25,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
   };
 
   const getPaymentIcon = () => {
-    switch(paymentMethod) {
+    switch (paymentMethod) {
       case 'cod': return '💰';
       case 'card': return '💳';
       case 'upi': return '📱';
@@ -39,7 +35,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
   };
 
   const getPaymentText = () => {
-    switch(paymentMethod) {
+    switch (paymentMethod) {
       case 'cod': return 'Cash on Delivery';
       case 'card': return 'Credit/Debit Card';
       case 'upi': return 'UPI Payment';
@@ -47,6 +43,23 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
       default: return 'Select Payment';
     }
   };
+
+
+  const handlePlaceOrder = () => {
+    console.log("DEBUG: Selected Payment Method =", selectedPayment);
+
+    if (selectedPayment === 'upi') {
+      console.log("UPI selected - Showing Payment component");
+      setPayment(true);
+    } else {
+      console.log("Normal payment method - Proceed with normal flow");
+      if (onPlaceOrder) {
+        onPlaceOrder();
+      }
+    }
+  };
+
+  
 
   return (
     <div className="order-summary-card">
@@ -70,36 +83,35 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
             Edit Cart
           </Link>
         </div>
-        
+
         <div className="items-list">
           {items.slice(0, 3).map(item => (
-        <div key={item.id} className="order-item">
-  <div className="item-icon">
-    {item.image ? (
-      <img 
-        src={item.image}
-        alt={item.name}
-        className="item-image"
-      />
-    ) : (
-      <span className="item-fallback-icon">🛒</span>
-    )}
-  </div>
+            <div key={item.id} className="order-item">
+              <div className="item-icon">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="item-image"
+                  />
+                ) : (
+                  <span className="item-fallback-icon">🛒</span>
+                )}
+              </div>
 
-  <div className="item-details">
-    <span className="item-name">{item.name}</span>
-    <span className="item-meta">
-      {item.quantity} × ₹{item.price.toFixed(2)}
-    </span>
-  </div>
+              <div className="item-details">
+                <span className="item-name">{item.name}</span>
+                <span className="item-meta">
+                  {item.quantity} × ₹{item.price.toFixed(2)}
+                </span>
+              </div>
 
-  <div className="item-total">
-    ₹{(item.price * item.quantity).toFixed(2)}
-  </div>
-</div>
-
+              <div className="item-total">
+                ₹{(item.price * item.quantity).toFixed(2)}
+              </div>
+            </div>
           ))}
-          
+
           {items.length > 3 && (
             <div className="more-items">
               <span className="more-count">+{items.length - 3} more items</span>
@@ -171,13 +183,13 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
       {/* Price Breakdown */}
       <div className="price-breakdown-section">
         <h4 className="price-title">Price Details</h4>
-        
+
         <div className="price-rows">
           <div className="price-row">
             <span className="price-label">Subtotal ({itemCount} items)</span>
             <span className="price-value">₹{subtotal.toFixed(2)}</span>
           </div>
-          
+
           <div className="price-row">
             <span className="price-label">Delivery Fee</span>
             <span className={`price-value ${deliveryFee === 0 ? 'free-delivery' : ''}`}>
@@ -191,12 +203,12 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
               )}
             </span>
           </div>
-          
+
           <div className="price-row">
             <span className="price-label">GST (18%)</span>
             <span className="price-value">₹{tax.toFixed(2)}</span>
           </div>
-          
+
           {paymentMethod === 'cod' && (
             <div className="price-row cod-charge">
               <span className="price-label">COD Convenience Fee</span>
@@ -212,7 +224,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
                 Add ₹{(499 - subtotal).toFixed(2)} more for FREE delivery!
               </div>
               <div className="progress-bar">
-                <div 
+                <div
                   className="progress-fill"
                   style={{ width: `${Math.min((subtotal / 499) * 100, 100)}%` }}
                 ></div>
@@ -236,9 +248,9 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
         </div>
       </div>
 
-      {/* Place Order Button */}
-      <button 
-        onClick={() => isOrderReady && setPayment(true)} 
+      {/* 👇 CHANGE 3: Button ka onClick change karo */}
+      <button
+        onClick={handlePlaceOrder}  // 👈 YAHAN CHANGE
         className={`place-order-btn ${!isOrderReady ? 'disabled' : ''}`}
         disabled={!isOrderReady}
       >
@@ -256,12 +268,8 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
         )}
       </button>
 
-
-
-     {payment && <Payment amount={finalTotal} onClose={() => setPayment(false)} />}
-
-
-  
+      {/* Payment Component */}
+      {payment && <Payment amount={finalTotal} onClose={() => setPayment(false)} />}
 
       {/* Order Guarantees */}
       <div className="order-guarantees">
@@ -282,7 +290,7 @@ const OrderSummary = ({ items, address, paymentMethod, onPlaceOrder, currentStep
       {/* Terms & Conditions */}
       <div className="terms-section">
         <p className="terms-text">
-          By placing this order, you agree to our <Link to="/terms" className="terms-link">Terms of Service</Link> 
+          By placing this order, you agree to our <Link to="/terms" className="terms-link">Terms of Service</Link>
           and <Link to="/privacy" className="terms-link">Privacy Policy</Link>
         </p>
         <p className="support-text">
